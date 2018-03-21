@@ -15,14 +15,17 @@ bool ModulePlayer::Init()
 	bool ret = true;
 	player = new SDL_Rect{ 0,0,50,50 };
 	shoot = new SDL_Rect{ 0,0,50,20 };
-	//start_time = new Uint32{ SDL_GetTicks() };
+	/*for (int i = 0; i < 10; ++i) {
+		bullets[i].shooting = false;
+	}*/
 	return ret;
 }
 
 // Called every draw update
 update_status ModulePlayer::Update()
 {
-	//start_time = SDL_GetTicks();
+	
+	start_time = (Uint32 *) SDL_GetTicks();
 
 	//Rectangle Movement
 	if (App->input->movement_key[App->input->UP] && player->y > 0) {
@@ -37,20 +40,18 @@ update_status ModulePlayer::Update()
 	if (App->input->movement_key[App->input->RIGHT] && player->x < SCREEN_WIDTH - player->w) {
 		player->x++;
 	}
-	/*if (App->input->movement_key[App->input->SPACE]) {
+	if (App->input->movement_key[App->input->SPACE]) {
 		if (start_time - shooting_delay > 250) {
 			for (int i = 0; i < 10 && (start_time - shooting_delay > 250); ++i) {
-				if (!bullet[i].shooting) {
+				if (!bullets[i].shooting) {
 					shooting_delay = start_time;
-					bullet[i].bullet.w = 22;
-					bullet[i].bullet.h = 31;
-					bullet[i].bullet.x = player->x + player->w;
-					bullet[i].bullet.y = player->y + player->h / 2 - bullet[i].bullet.h / 2; ;
-					bullet[i].shooting = true;
+					bullets[i].bullet = new SDL_Rect{ player->x + player->w ,player->y + (player->h / 2) - 15 ,22,31  };
+					bullets[i].shooting = true;
+					break;
 				}
 			}
 		}
-	}*/
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }

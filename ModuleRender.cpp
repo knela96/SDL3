@@ -50,10 +50,9 @@ update_status ModuleRender::PreUpdate()
 	section = new SDL_Rect{ 0,0, 538, 381 };//x-position,y-position,width-img,height-img
 	Blit(tex, 0,0, section);
 
-	SDL_RenderCopyEx(renderer, ship, NULL, App->player->player, 0, NULL, SDL_FLIP_NONE);
-	//SDL_RenderCopyEx(renderer, shoot, NULL, App->player->shoot, 0, NULL, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(renderer, ship, NULL, App->player->player, 90, NULL, SDL_FLIP_NONE);
 
-	//Bullets();
+	RenderBullets();
 
 
 	return update_status::UPDATE_CONTINUE;
@@ -106,16 +105,15 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section)
 	return ret;
 }
 
-void ModuleRender::Bullets() {
+void ModuleRender::RenderBullets() {
 	//Move Bullets
-	/*
 	for (int i = 0; i < 10; ++i) {
-		if (bullet[i].shooting && bullet[i].bullet.x < SCREEN_WIDTH) {
-			bullet[i].bullet.x += 2;
-			SDL_RenderCopyEx(renderer, shoot, NULL, &bullet[i].bullet, 0, NULL, SDL_FLIP_NONE);
+		if (App->player->bullets[i].shooting && App->player->bullets[i].bullet->x < SCREEN_WIDTH) {
+			App->player->bullets[i].bullet->x += 2;
+			SDL_RenderCopyEx(renderer, shoot, NULL, App->player->bullets[i].bullet, 0, NULL, SDL_FLIP_NONE);
 		}
 		else {
-			bullet[i].shooting = false;
+			App->player->bullets[i].shooting = false;
 		}
-	}*/
+	}
 }

@@ -18,7 +18,7 @@ public:
 	update_status PreUpdate();
 	bool CleanUp();
 
-	void Bullets();
+	void RenderBullets();
 	bool Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section = nullptr);
 
 public:
