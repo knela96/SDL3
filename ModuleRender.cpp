@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
+#include "ModulePlayer.h"
 #include "ModuleTextures.h"
 #include "SDL/include/SDL.h"
 
@@ -33,8 +34,9 @@ bool ModuleRender::Init()
 	}
 
 	// TODO 9: load a texture "test.png" to test is everything works well
-	tex = App->textures->Load("test.png");
-
+	tex = App->textures->Load("Assets/test.png");
+	ship = App->textures->Load("Assets/ship.png");
+	shoot = App->textures->Load("Assets/shoot.png");
 	return ret;
 }
 
@@ -47,6 +49,12 @@ update_status ModuleRender::PreUpdate()
 	// TODO 10: Blit our test texture to check functionality
 	section = new SDL_Rect{ 0,0, 538, 381 };//x-position,y-position,width-img,height-img
 	Blit(tex, 0,0, section);
+
+	SDL_RenderCopyEx(renderer, ship, NULL, App->player->player, 0, NULL, SDL_FLIP_NONE);
+	//SDL_RenderCopyEx(renderer, shoot, NULL, App->player->shoot, 0, NULL, SDL_FLIP_NONE);
+
+	//Bullets();
+
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -96,4 +104,18 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section)
 	}
 
 	return ret;
+}
+
+void ModuleRender::Bullets() {
+	//Move Bullets
+	/*
+	for (int i = 0; i < 10; ++i) {
+		if (bullet[i].shooting && bullet[i].bullet.x < SCREEN_WIDTH) {
+			bullet[i].bullet.x += 2;
+			SDL_RenderCopyEx(renderer, shoot, NULL, &bullet[i].bullet, 0, NULL, SDL_FLIP_NONE);
+		}
+		else {
+			bullet[i].shooting = false;
+		}
+	}*/
 }

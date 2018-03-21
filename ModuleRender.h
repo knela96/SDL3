@@ -18,11 +18,14 @@ public:
 	update_status PreUpdate();
 	bool CleanUp();
 
+	void Bullets();
 	bool Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section = nullptr);
 
 public:
 	SDL_Renderer* renderer = nullptr;
 	SDL_Texture* tex;
+	SDL_Texture* ship;
+	SDL_Texture* shoot;
 	SDL_Rect* section;
 };
 
