@@ -19,6 +19,8 @@ public:
 
 public:
 	const Uint8 *keyboard = nullptr;
+	bool movement_key[5];
+	enum key { UP, LEFT, DOWN, RIGHT, SPACE };
 };
 
 #endif // __ModuleInput_H__
