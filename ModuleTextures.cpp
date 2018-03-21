@@ -73,11 +73,15 @@ SDL_Texture* const ModuleTextures::Load(const char* path)
 		if (texture == nullptr)
 		{
 			LOG("Unable to create texture from %s! SDL Error: %s\n", path, SDL_GetError());
-		}else{
+		}
+		else
+		{
 			//Get rid of old loaded surface
 			// TODO 4: Before leaving, remember to free the surface and
 			// add the texture to our own array so we can properly free them
+
 			SDL_FreeSurface(image);
+
 			for (int i = 0; i < MAX_TEXTURES; ++i) {
 				if (textures[i] == nullptr) {
 					textures[i] = texture;

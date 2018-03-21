@@ -27,6 +27,7 @@ public:
 	SDL_Texture* ship;
 	SDL_Texture* shoot;
 	SDL_Rect* section;
+	int ScrollingOffset = 0;
 };
 
 #endif //__ModuleRenderer_H__

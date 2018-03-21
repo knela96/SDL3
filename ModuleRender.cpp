@@ -34,7 +34,7 @@ bool ModuleRender::Init()
 	}
 
 	// TODO 9: load a texture "test.png" to test is everything works well
-	tex = App->textures->Load("Assets/test.png");
+	tex = App->textures->Load("Assets/Tilemaplvl1.png");
 	ship = App->textures->Load("Assets/ship.png");
 	shoot = App->textures->Load("Assets/shoot.png");
 	return ret;
@@ -43,12 +43,25 @@ bool ModuleRender::Init()
 // Called every draw update
 update_status ModuleRender::PreUpdate()
 {
+	//makes the scrollig offet move and if its lesser than the texture size, it 
+	//reinizializes to 0
+	--ScrollingOffset;
+	if (ScrollingOffset < -1536)
+	{
+		ScrollingOffset = 0;
+	}
 	// TODO 7: Clear the screen to black before starting every frame
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
 	SDL_RenderClear(renderer);
 	// TODO 10: Blit our test texture to check functionality
-	section = new SDL_Rect{ 0,0, 538, 381 };//x-position,y-position,width-img,height-img
-	Blit(tex, 0,0, section);
+	
+	
+	section = new SDL_Rect{ 0,0, 1536, 1536 };//x-position,y-position,width-img,height-img
+	
+	
+	Blit(tex, ScrollingOffset,0, section);
+	Blit(tex, ScrollingOffset+1536, 0, section);
 
 	SDL_RenderCopyEx(renderer, ship, NULL, App->player->player, 90, NULL, SDL_FLIP_NONE);
 
