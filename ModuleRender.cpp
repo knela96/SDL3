@@ -65,7 +65,7 @@ update_status ModuleRender::PreUpdate()
 	Blit(tex, ScrollingOffset, 0, section);
 	Blit(tex, ScrollingOffset + 1536, 0, section);
 
-	SDL_RenderCopyEx(renderer, ship, NULL, App->player->player, 90, NULL, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(renderer, ship, NULL, App->player->player, 0, NULL, SDL_FLIP_NONE);
 
 	RenderBullets();
 

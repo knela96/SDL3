@@ -15,8 +15,8 @@ ModulePlayer::~ModulePlayer() {}
 bool ModulePlayer::Init()
 {
 	bool ret = true;
-	player = new SDL_Rect{ 0,0,50,50 };
-	shoot = new SDL_Rect{ 0,0,50,20 };
+	player = new SDL_Rect{ 0,0,100,30 };
+	shoot = new SDL_Rect{ 0,0,80,50 };
 	/*for (int i = 0; i < 10; ++i) {
 	bullets[i].shooting = false;
 	}*/
