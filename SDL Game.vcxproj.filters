@@ -38,9 +38,12 @@
     <ClInclude Include="ModulePlayer.h">
       <Filter>Modules</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="ModuleEnemy.h">
       <Filter>Modules</Filter>
     </ClInclude>
+=======
+>>>>>>> parent of 3f80660... Merge branch 'master' of https://github.com/knela96/SDL
     <ClInclude Include="ModuleAudio.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -70,9 +73,12 @@
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="ModuleEnemy.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+=======
+>>>>>>> parent of 3f80660... Merge branch 'master' of https://github.com/knela96/SDL
     <ClCompile Include="ModuleAudio.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
