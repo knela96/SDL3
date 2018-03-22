@@ -38,7 +38,11 @@
     <ClInclude Include="ModulePlayer.h">
       <Filter>Modules</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="ModuleAudio.h">
+=======
+    <ClInclude Include="ModuleEnemy.h">
+>>>>>>> 5acbec99611aa121d8e1fadcde172c27e705f0c2
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
@@ -67,7 +71,11 @@
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="ModuleAudio.cpp">
+=======
+    <ClCompile Include="ModuleEnemy.cpp">
+>>>>>>> 5acbec99611aa121d8e1fadcde172c27e705f0c2
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

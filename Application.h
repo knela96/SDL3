@@ -10,6 +10,7 @@ class ModuleInput;
 class ModuleTextures;
 class ModuleRender;
 class ModulePlayer;
+class ModuleEnemy;
 class Module;
 class ModuleAudio;
 
@@ -23,7 +24,11 @@ public:
 	ModuleInput* input = nullptr;
 	ModuleTextures* textures = nullptr;
 	ModulePlayer* player = nullptr;
+<<<<<<< HEAD
 	ModuleAudio* audio = nullptr;
+=======
+	ModuleEnemy* enemy = nullptr;
+>>>>>>> 5acbec99611aa121d8e1fadcde172c27e705f0c2
 
 public:
 

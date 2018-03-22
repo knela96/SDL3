@@ -17,8 +17,8 @@ public:
 	update_status PostUpdate();
 	update_status PreUpdate();
 	bool CleanUp();
-
-	void Bullets();
+	void RenderEnemies();
+	void RenderBullets();
 	bool Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section = nullptr);
 
 public:
@@ -26,6 +26,7 @@ public:
 	SDL_Texture* tex;
 	SDL_Texture* ship;
 	SDL_Texture* shoot;
+	SDL_Texture* enemy;
 	SDL_Rect* section;
 	int ScrollingOffset = 0;
 };
