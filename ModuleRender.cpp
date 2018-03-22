@@ -3,6 +3,7 @@
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModulePlayer.h"
+#include "ModuleEnemy.h"
 #include "ModuleTextures.h"
 #include "SDL/include/SDL.h"
 
@@ -37,6 +38,7 @@ bool ModuleRender::Init()
 	tex = App->textures->Load("Assets/Tilemaplvl1.png");
 	ship = App->textures->Load("Assets/ship.png");
 	shoot = App->textures->Load("Assets/shoot.png");
+	enemy = App->textures->Load("Assets/enemy.png");
 	return ret;
 }
 
@@ -66,6 +68,8 @@ update_status ModuleRender::PreUpdate()
 	SDL_RenderCopyEx(renderer, ship, NULL, App->player->player, 90, NULL, SDL_FLIP_NONE);
 
 	RenderBullets();
+
+	RenderEnemies();
 
 
 	return update_status::UPDATE_CONTINUE;
@@ -127,6 +131,22 @@ void ModuleRender::RenderBullets() {
 		}
 		else {
 			App->player->bullets[i].shooting = false;
+		}
+		break;
+	}
+}
+
+void ModuleRender::RenderEnemies() {
+	for (int j = 0; j < 30; ++j) {
+		if (App->enemy->enemies[j].collision != nullptr) {
+			if (App->enemy->enemies[j].render && App->enemy->enemies[j].collision->x > 0) {
+				--App->enemy->enemies[j].collision->x;
+				SDL_RenderCopyEx(renderer, enemy, NULL, App->enemy->enemies[j].collision, 0, NULL, SDL_FLIP_NONE);
+			}
+			else {
+				App->enemy->enemies[j].collision->x = -500;
+			}
+			break;
 		}
 	}
 }

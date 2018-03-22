@@ -22,11 +22,12 @@ public:
 	bool Init();
 	update_status Update();
 	bool CleanUp();
+	bool checkCollision(SDL_Rect* bullet, SDL_Rect* enemy);
 
 public:
 	SDL_Rect* player;
 	SDL_Rect* shoot;
-	Bullet bullets[10] = { false };
+	Bullet bullets[10] = { false, nullptr};
 	Uint32* start_time = 0;
 	Uint32* shooting_delay;
 };

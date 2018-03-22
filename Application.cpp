@@ -4,6 +4,7 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
+#include "ModuleEnemy.h"
 
 Application::Application()
 {
@@ -12,6 +13,7 @@ Application::Application()
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = player = new ModulePlayer();
+	modules[5] = enemy = new ModuleEnemy();
 }	
 
 Application::~Application()
