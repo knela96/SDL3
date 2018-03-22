@@ -4,11 +4,8 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
-<<<<<<< HEAD
 #include "ModuleAudio.h"
-=======
 #include "ModuleEnemy.h"
->>>>>>> 5acbec99611aa121d8e1fadcde172c27e705f0c2
 
 Application::Application()
 {
@@ -17,11 +14,8 @@ Application::Application()
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = player = new ModulePlayer();
-<<<<<<< HEAD
-	modules[5] = audio = new ModuleAudio();
-=======
 	modules[5] = enemy = new ModuleEnemy();
->>>>>>> 5acbec99611aa121d8e1fadcde172c27e705f0c2
+	modules[6] = audio = new ModuleAudio();
 }	
 
 Application::~Application()

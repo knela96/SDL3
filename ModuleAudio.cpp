@@ -5,10 +5,10 @@
 #include "ModuleAudio.h"
 
 #include "SDL/include/SDL.h"
-#include "SDL_mixer\include\SDL_mixer.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
-#pragma comment (lib, "SDL_mixere/libx86/SDL2_mixer.lib")
-#define MUS_PATH "Musiclvl1.ogg"
+#pragma comment (lib, "SDL_mixer/libx86/SDL2_mixer.lib")
+#define MUS_PATH "Assets/Musiclvl1.ogg"
 
 ModuleAudio::ModuleAudio() : Module()
 {}
@@ -46,18 +46,20 @@ bool ModuleAudio::Init()
 
 		music = Mix_LoadMUS(MUS_PATH);
 
-		wave = Mix_LoadWAV("shoot.wav");
+		wave = Mix_LoadWAV("Assets/shoot.wav");
 
-		//play the music and the sound
-		Mix_PlayChannel(-1, wave, 0);
+		if(wave==nullptr)
+			LOG("Could not initialize Mixer lib. Mix_Init: %s", Mix_GetError());
 		
 		Mix_FadeInMusic(music, -1, 2000); //pointer to where the music is (already loaded), 0 don't play music and -1 to loop 
 											//forever the music, milisecond in which the fade in enters
-
-		while (Mix_PlayingMusic());
-
+		
 	}
 	return ret;
+}
+
+void ModuleAudio::PlayShoot() {
+	Mix_PlayChannel(-1, App->audio->wave, 0);
 }
 
 bool ModuleAudio::CleanUp() {

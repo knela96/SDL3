@@ -5,7 +5,7 @@
 
 struct Mix_Chunk;
 
-struct Mix_Music;
+typedef struct _Mix_Music Mix_Music;
 
 class ModuleAudio : public Module 
 {
@@ -15,7 +15,7 @@ public:
 
 	bool Init();
 	bool CleanUp();
-
+	void PlayShoot();
 
 public:
 

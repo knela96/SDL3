@@ -21,14 +21,14 @@ bool ModuleRender::Init()
 	bool ret = true;
 	Uint32 flags = 0;
 
-	if(REN_VSYNC == true)
+	if (REN_VSYNC == true)
 	{
 		flags |= SDL_RENDERER_PRESENTVSYNC;
 	}
 
 	renderer = SDL_CreateRenderer(App->window->window, -1, flags);
-	
-	if(renderer == NULL)
+
+	if (renderer == NULL)
 	{
 		LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
@@ -57,13 +57,13 @@ update_status ModuleRender::PreUpdate()
 
 	SDL_RenderClear(renderer);
 	// TODO 10: Blit our test texture to check functionality
-	
-	
+
+
 	section = new SDL_Rect{ 0,0, 1536, 1536 };//x-position,y-position,width-img,height-img
-	
-	
-	Blit(tex, ScrollingOffset,0, section);
-	Blit(tex, ScrollingOffset+1536, 0, section);
+
+
+	Blit(tex, ScrollingOffset, 0, section);
+	Blit(tex, ScrollingOffset + 1536, 0, section);
 
 	SDL_RenderCopyEx(renderer, ship, NULL, App->player->player, 90, NULL, SDL_FLIP_NONE);
 
@@ -89,7 +89,7 @@ bool ModuleRender::CleanUp()
 	LOG("Destroying renderer");
 
 	//Destroy window
-	if(renderer != nullptr)
+	if (renderer != nullptr)
 		SDL_DestroyRenderer(renderer);
 
 	return true;
@@ -103,7 +103,7 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section)
 	rect.x = x;
 	rect.y = y;
 
-	if(section != nullptr)
+	if (section != nullptr)
 	{
 		rect.w = section->w;
 		rect.h = section->h;
@@ -113,7 +113,7 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section)
 		SDL_QueryTexture(texture, nullptr, nullptr, &rect.w, &rect.h);
 	}
 
-	if(SDL_RenderCopy(renderer, texture, section, &rect) != 0)
+	if (SDL_RenderCopy(renderer, texture, section, &rect) != 0)
 	{
 		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
 		ret = false;
@@ -132,7 +132,6 @@ void ModuleRender::RenderBullets() {
 		else {
 			App->player->bullets[i].shooting = false;
 		}
-		break;
 	}
 }
 

@@ -3,6 +3,7 @@
 #include "ModulePlayer.h"
 #include "ModuleEnemy.h"
 #include "ModuleInput.h"
+#include "ModuleAudio.h"
 #include "SDL/include/SDL.h"
 
 ModulePlayer::ModulePlayer() : Module() {}
@@ -17,7 +18,7 @@ bool ModulePlayer::Init()
 	player = new SDL_Rect{ 0,0,50,50 };
 	shoot = new SDL_Rect{ 0,0,50,20 };
 	/*for (int i = 0; i < 10; ++i) {
-		bullets[i].shooting = false;
+	bullets[i].shooting = false;
 	}*/
 	return ret;
 }
@@ -48,6 +49,7 @@ update_status ModulePlayer::Update()
 					shooting_delay = start_time;
 					bullets[i].bullet = new SDL_Rect{ player->x + player->w ,player->y + (player->h / 2) - 30 ,80,60 };
 					bullets[i].shooting = true;
+					App->audio->PlayShoot();
 					break;
 				}
 			}
@@ -66,7 +68,6 @@ update_status ModulePlayer::Update()
 					break;
 				}
 			}
-			
 		}
 	}
 
