@@ -25,10 +25,13 @@ public:
 	ModulePlayer* player = nullptr;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ModuleAudio* audio = nullptr;
 =======
 	ModuleEnemy* enemy = nullptr;
 >>>>>>> 5acbec99611aa121d8e1fadcde172c27e705f0c2
+=======
+>>>>>>> parent of 3b749a7... Module Audio with assets
 =======
 >>>>>>> parent of 3b749a7... Module Audio with assets
 
