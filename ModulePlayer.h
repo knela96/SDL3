@@ -4,7 +4,13 @@
 #include "Module.h"
 
 struct SDL_Rect;
-//typedef unsigned char Uint32;
+
+typedef unsigned int Uint32;
+
+struct Bullet {
+	bool shooting;
+	SDL_Rect* bullet;
+};
 
 class ModulePlayer : public Module
 {
@@ -16,12 +22,14 @@ public:
 	bool Init();
 	update_status Update();
 	bool CleanUp();
+	bool checkCollision(SDL_Rect* bullet, SDL_Rect* enemy);
 
 public:
 	SDL_Rect* player;
 	SDL_Rect* shoot;
-	//Uint32* start_time;
-	//Uint32* shooting_delay;
+	Bullet bullets[10] = { false, nullptr};
+	Uint32* start_time = 0;
+	Uint32* shooting_delay;
 };
 
 #endif // __ModuleInput_H__

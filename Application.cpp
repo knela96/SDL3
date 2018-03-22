@@ -5,10 +5,7 @@
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
 #include "ModuleAudio.h"
-<<<<<<< HEAD
 #include "ModuleEnemy.h"
-=======
->>>>>>> parent of 3f80660... Merge branch 'master' of https://github.com/knela96/SDL
 
 Application::Application()
 {
@@ -17,12 +14,8 @@ Application::Application()
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = player = new ModulePlayer();
-<<<<<<< HEAD
 	modules[5] = enemy = new ModuleEnemy();
 	modules[6] = audio = new ModuleAudio();
-=======
-	modules[5] = audio = new ModuleAudio();
->>>>>>> parent of 3f80660... Merge branch 'master' of https://github.com/knela96/SDL
 }	
 
 Application::~Application()

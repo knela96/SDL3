@@ -10,11 +10,7 @@ class ModuleInput;
 class ModuleTextures;
 class ModuleRender;
 class ModulePlayer;
-<<<<<<< HEAD
 class ModuleEnemy;
-=======
-class Module;
->>>>>>> parent of 3f80660... Merge branch 'master' of https://github.com/knela96/SDL
 class ModuleAudio;
 class Module;
 
@@ -28,10 +24,7 @@ public:
 	ModuleInput* input = nullptr;
 	ModuleTextures* textures = nullptr;
 	ModulePlayer* player = nullptr;
-<<<<<<< HEAD
 	ModuleEnemy* enemy = nullptr;
-=======
->>>>>>> parent of 3f80660... Merge branch 'master' of https://github.com/knela96/SDL
 	ModuleAudio* audio = nullptr;
 
 public:

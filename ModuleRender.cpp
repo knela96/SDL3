@@ -3,6 +3,7 @@
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModulePlayer.h"
+#include "ModuleEnemy.h"
 #include "ModuleTextures.h"
 #include "SDL/include/SDL.h"
 
@@ -37,6 +38,7 @@ bool ModuleRender::Init()
 	tex = App->textures->Load("Assets/Tilemaplvl1.png");
 	ship = App->textures->Load("Assets/ship.png");
 	shoot = App->textures->Load("Assets/shoot.png");
+	enemy = App->textures->Load("Assets/enemy.png");
 	return ret;
 }
 
@@ -63,10 +65,11 @@ update_status ModuleRender::PreUpdate()
 	Blit(tex, ScrollingOffset, 0, section);
 	Blit(tex, ScrollingOffset + 1536, 0, section);
 
-	SDL_RenderCopyEx(renderer, ship, NULL, App->player->player, 0, NULL, SDL_FLIP_NONE);
-	//SDL_RenderCopyEx(renderer, shoot, NULL, App->player->shoot, 0, NULL, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(renderer, ship, NULL, App->player->player, 90, NULL, SDL_FLIP_NONE);
 
-	//Bullets();
+	RenderBullets();
+
+	RenderEnemies();
 
 
 	return update_status::UPDATE_CONTINUE;
@@ -119,16 +122,14 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section)
 	return ret;
 }
 
-void ModuleRender::Bullets() {
+void ModuleRender::RenderBullets() {
 	//Move Bullets
-	/*
 	for (int i = 0; i < 10; ++i) {
-		if (bullet[i].shooting && bullet[i].bullet.x < SCREEN_WIDTH) {
-			bullet[i].bullet.x += 2;
-			SDL_RenderCopyEx(renderer, shoot, NULL, &bullet[i].bullet, 0, NULL, SDL_FLIP_NONE);
+		if (App->player->bullets[i].shooting && App->player->bullets[i].bullet->x < SCREEN_WIDTH) {
+			App->player->bullets[i].bullet->x += 2;
+			SDL_RenderCopyEx(renderer, shoot, NULL, App->player->bullets[i].bullet, 0, NULL, SDL_FLIP_NONE);
 		}
 		else {
-<<<<<<< HEAD
 			App->player->bullets[i].shooting = false;
 		}
 	}
@@ -145,9 +146,6 @@ void ModuleRender::RenderEnemies() {
 				App->enemy->enemies[j].collision->x = -500;
 			}
 			break;
-=======
-			bullet[i].shooting = false;
->>>>>>> parent of 3f80660... Merge branch 'master' of https://github.com/knela96/SDL
 		}
-	}*/
+	}
 }
