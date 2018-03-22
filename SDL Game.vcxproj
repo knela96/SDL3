@@ -75,10 +75,13 @@
     <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="Module.h" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClInclude Include="ModuleAudio.h" />
 =======
     <ClInclude Include="ModuleEnemy.h" />
 >>>>>>> 5acbec99611aa121d8e1fadcde172c27e705f0c2
+=======
+>>>>>>> parent of 3b749a7... Module Audio with assets
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModulePlayer.h" />
     <ClInclude Include="ModuleRender.h" />
@@ -90,10 +93,13 @@
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClCompile Include="ModuleAudio.cpp" />
 =======
     <ClCompile Include="ModuleEnemy.cpp" />
 >>>>>>> 5acbec99611aa121d8e1fadcde172c27e705f0c2
+=======
+>>>>>>> parent of 3b749a7... Module Audio with assets
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
     <ClCompile Include="ModuleRender.cpp" />

@@ -39,12 +39,15 @@
       <Filter>Modules</Filter>
     </ClInclude>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClInclude Include="ModuleAudio.h">
 =======
     <ClInclude Include="ModuleEnemy.h">
 >>>>>>> 5acbec99611aa121d8e1fadcde172c27e705f0c2
       <Filter>Modules</Filter>
     </ClInclude>
+=======
+>>>>>>> parent of 3b749a7... Module Audio with assets
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -72,11 +75,14 @@
       <Filter>Modules</Filter>
     </ClCompile>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClCompile Include="ModuleAudio.cpp">
 =======
     <ClCompile Include="ModuleEnemy.cpp">
 >>>>>>> 5acbec99611aa121d8e1fadcde172c27e705f0c2
       <Filter>Modules</Filter>
     </ClCompile>
+=======
+>>>>>>> parent of 3b749a7... Module Audio with assets
   </ItemGroup>
 </Project>

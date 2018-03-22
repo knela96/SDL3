@@ -5,10 +5,13 @@
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "ModuleAudio.h"
 =======
 #include "ModuleEnemy.h"
 >>>>>>> 5acbec99611aa121d8e1fadcde172c27e705f0c2
+=======
+>>>>>>> parent of 3b749a7... Module Audio with assets
 
 Application::Application()
 {
@@ -18,10 +21,13 @@ Application::Application()
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = player = new ModulePlayer();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	modules[5] = audio = new ModuleAudio();
 =======
 	modules[5] = enemy = new ModuleEnemy();
 >>>>>>> 5acbec99611aa121d8e1fadcde172c27e705f0c2
+=======
+>>>>>>> parent of 3b749a7... Module Audio with assets
 }	
 
 Application::~Application()

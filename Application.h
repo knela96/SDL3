@@ -3,7 +3,7 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 6
+#define NUM_MODULES 5
 
 class ModuleWindow;
 class ModuleInput;
@@ -12,7 +12,6 @@ class ModuleRender;
 class ModulePlayer;
 class ModuleEnemy;
 class Module;
-class ModuleAudio;
 
 class Application
 {
@@ -25,10 +24,13 @@ public:
 	ModuleTextures* textures = nullptr;
 	ModulePlayer* player = nullptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ModuleAudio* audio = nullptr;
 =======
 	ModuleEnemy* enemy = nullptr;
 >>>>>>> 5acbec99611aa121d8e1fadcde172c27e705f0c2
+=======
+>>>>>>> parent of 3b749a7... Module Audio with assets
 
 public:
 
