@@ -19,21 +19,21 @@ ModulePlayer::ModulePlayer()
 
 	// idle animation (arcade sprite sheet)
 	idle.PushBack({ 100, 0, 36, 16 });
-	idle.speed = 0.01f;
+	idle.speed = 0.1f;
 	
 	forward.PushBack({ 100, 0, 36, 16 });
-	forward.speed = 0.01f;
+	forward.speed = 0.1f;
 	
 	backward.PushBack({ 100, 0, 36, 16 });
-	backward.speed = 0.01f;
+	backward.speed = 0.1f;
 
 
 	upward.PushBack({ 48 , 0 , 40 , 16});
 	upward.PushBack({ 4, 0, 36, 10 });
 	upward.PushBack({ 4, 0, 36, 10 });
-	upward.speed = 0.01f;
+	upward.speed = 0.1f;
 	
-	downward.speed = 0.01f;
+	downward.speed = 0.1f;
 	downward.PushBack({ 150, 0, 40, 16 });
 	downward.PushBack({ 195, 0, 40, 16 });
 
@@ -56,38 +56,36 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 	Animation* current_animation = &idle;
+	SDL_Rect r = current_animation->GetCurrentFrame();
 
 	int speed = 1;
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == 1)
 	{
-		current_animation = &forward;
 		position.x += speed;
 	}
-
-	if (App->input->keyboard[SDL_SCANCODE_A] == 1)
+	else if (App->input->keyboard[SDL_SCANCODE_A] == 1)
 	{
-		current_animation = &backward;
 		position.x -= speed;
 	}
-	
-	if (App->input->keyboard[SDL_SCANCODE_W] == 1)
+	else if (App->input->keyboard[SDL_SCANCODE_W] == 1)
 	{
 		position.y -= speed;
-	  current_animation = &upward;
-		
+		current_animation = &upward;
+		r = current_animation->GetCurrentFrameNotCycling(1);
 	}
-	
-	if (App->input->keyboard[SDL_SCANCODE_S] == 1)
+	else if (App->input->keyboard[SDL_SCANCODE_S] == 1)
 	{
 		current_animation = &downward;
 
 		position.y += speed;
+		r = current_animation->GetCurrentFrameNotCycling(1);
+	}
+	else {
+		current_animation->reset_currentFrame();
 	}
 
 	// Draw everything --------------------------------------
-	SDL_Rect r = current_animation->GetCurrentFrameNotCycling();
-
 	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 
 	return UPDATE_CONTINUE;

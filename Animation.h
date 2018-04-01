@@ -30,18 +30,18 @@ public:
 		return frames[(int)current_frame];
 	}
 
-	SDL_Rect& GetCurrentFrameNotCycling()
+	SDL_Rect& GetCurrentFrameNotCycling(int lastframe)
 	{
-		if (2 > current_frame) {
+		if (current_frame < lastframe) {
 			current_frame += speed;
 		}
-		
-		
-		
 		return frames[(int)current_frame];
 	}
 
+	void reset_currentFrame() {
+		current_frame = 0.0f;
 
+	}
 
 
 
