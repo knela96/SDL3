@@ -39,8 +39,8 @@ public:
 	}
 
 	void reset_currentFrame() {
-		current_frame = 0.0f;
-
+		current_frame = 0;
+		frames[0];
 	}
 
 

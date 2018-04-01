@@ -57,31 +57,35 @@ update_status ModulePlayer::Update()
 {
 	Animation* current_animation = &idle;
 	SDL_Rect r = current_animation->GetCurrentFrame();
-
 	int speed = 1;
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == 1)
 	{
 		position.x += speed;
 	}
-	else if (App->input->keyboard[SDL_SCANCODE_A] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_A] == 1)
 	{
 		position.x -= speed;
 	}
-	else if (App->input->keyboard[SDL_SCANCODE_W] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_W] == 1)
 	{
 		position.y -= speed;
 		current_animation = &upward;
 		r = current_animation->GetCurrentFrameNotCycling(1);
 	}
-	else if (App->input->keyboard[SDL_SCANCODE_S] == 1)
-	{
-		current_animation = &downward;
+	else if (App->input->keyboard[SDL_SCANCODE_W] == 0) {
+		current_animation = &upward;
+		current_animation->reset_currentFrame();
+	}
 
-		position.y += speed;
+	if (App->input->keyboard[SDL_SCANCODE_S] == 1)
+	{
+		position.y += speed; 
+		current_animation = &downward;
 		r = current_animation->GetCurrentFrameNotCycling(1);
 	}
-	else {
+	else if (App->input->keyboard[SDL_SCANCODE_S] == 0) {
+		current_animation = &downward;
 		current_animation->reset_currentFrame();
 	}
 
