@@ -26,7 +26,7 @@ public:
 public:
 	Enemy enemies[30];
 	Uint32* start_time = 0;
-	Uint32* spawn_delay;;
+	Uint32* spawn_delay;
 };
 
 #endif // __ModuleInput_H__

@@ -4,6 +4,8 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "SDL/include/SDL.h"
+#include <time.h>
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -23,12 +25,13 @@ ModulePlayer::ModulePlayer()
 	
 	backward.PushBack({ 100, 0, 36, 16 });
 	
-	upward.PushBack({ 48 , 0 , 40 , 16});
-	upward.PushBack({ 4, 0, 36, 10 });
-	
-	
 
+
+	upward.PushBack({ 48 , 0 , 40 , 16});
+	upward2.PushBack({ 4, 0, 36, 10 });
+	
 	downward.PushBack({ 150, 0, 40, 16 });
+	downward.speed = 0.01f;
 	downward.PushBack({ 195, 0, 40, 16 });
 
 
@@ -67,13 +70,15 @@ update_status ModulePlayer::Update()
 	
 	if (App->input->keyboard[SDL_SCANCODE_W] == 1)
 	{
-		current_animation = &upward;
 		position.y -= speed;
+	  current_animation = &upward2;
+		
 	}
 	
 	if (App->input->keyboard[SDL_SCANCODE_S] == 1)
 	{
 		current_animation = &downward;
+
 		position.y += speed;
 	}
 

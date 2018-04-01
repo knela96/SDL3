@@ -7,7 +7,7 @@
 #include "p2Point.h"
 
 struct SDL_Texture;
-
+typedef unsigned int Uint32;
 class ModulePlayer : public Module
 {
 public:
@@ -24,7 +24,10 @@ public:
 	Animation forward;
 	Animation backward;
 	Animation upward;
+	Animation upward2;
+	
 	Animation downward;
+	
 	iPoint position;
 
 };
