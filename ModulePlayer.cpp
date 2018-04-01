@@ -29,9 +29,9 @@ ModulePlayer::ModulePlayer()
 
 
 	upward.PushBack({ 48 , 0 , 40 , 16});
+	upward.PushBack({ 4, 0, 40 , 16 });
 	upward.PushBack({ 4, 0, 36, 10 });
-	upward.PushBack({ 4, 0, 36, 10 });
-	upward.speed = 0.1f;
+	upward.speed = 0.08f;
 	
 	downward.speed = 0.1f;
 	downward.PushBack({ 150, 0, 40, 16 });
