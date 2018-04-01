@@ -29,11 +29,11 @@ ModulePlayer::ModulePlayer()
 
 
 	upward.PushBack({ 48 , 0 , 40 , 16});
-	upward2.PushBack({ 4, 0, 36, 10 });
-	
-	downward.PushBack({ 150, 0, 40, 16 });
+	upward.PushBack({ 4, 0, 36, 10 });
+	upward.speed = 0.01f;
 	
 	downward.speed = 0.01f;
+	downward.PushBack({ 150, 0, 40, 16 });
 	downward.PushBack({ 195, 0, 40, 16 });
 
 
@@ -73,7 +73,7 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_W] == 1)
 	{
 		position.y -= speed;
-	  current_animation = &upward2;
+	  current_animation = &upward;
 		
 	}
 	
