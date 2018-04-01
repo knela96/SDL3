@@ -12,7 +12,7 @@ struct SDL_Texture;
 typedef unsigned int Uint32;
 
 struct Enemy {
-	SDL_Rect* collision;
+	SDL_Rect* collision = nullptr;
 	SDL_Texture* graphics = nullptr;
 	Animation forward;
 	iPoint position;
@@ -38,4 +38,4 @@ public:
 
 };
 
-#endif // __ModuleInput_H__
+#endif // __ModuleEnemy_H__
