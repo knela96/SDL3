@@ -32,10 +32,7 @@ public:
 	Enemy enemies[30];
 	Uint32* start_time = 0;
 	Uint32* spawn_delay;
-<<<<<<< HEAD
-=======
-	Animation anim;
->>>>>>> 9e88072f22a20ac46b9b71b05b65dc9706a638a1
+
 };
 
 #endif // __ModuleInput_H__
