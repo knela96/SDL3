@@ -12,7 +12,7 @@ struct SDL_Texture;
 typedef unsigned int Uint32;
 
 struct Enemy {
-	SDL_Rect* collision;
+	SDL_Rect* collision = nullptr;
 	SDL_Texture* graphics = nullptr;
 	Animation forward;
 	iPoint position;
@@ -32,11 +32,7 @@ public:
 	Enemy enemies[30];
 	Uint32* start_time = 0;
 	Uint32* spawn_delay;
-
-<<<<<<< HEAD
-=======
 	Animation anim;
->>>>>>> 6a308cc207e3909ba513ae72a8bad9604fef8387
 };
 
-#endif // __ModuleInput_H__
+#endif // __ModuleEnemy_H__
