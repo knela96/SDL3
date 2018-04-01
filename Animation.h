@@ -29,6 +29,23 @@ public:
 
 		return frames[(int)current_frame];
 	}
+
+	SDL_Rect& GetCurrentFrameNotCycling(int numberofframes)
+	{
+		
+		if (numberofframes > (int)current_frame) {
+			current_frame += speed;
+			
+		}
+		return frames[(int)current_frame];
+		
+	}
+
+
+
+
+
+
 };
 
 #endif

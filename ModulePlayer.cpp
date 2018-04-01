@@ -19,18 +19,20 @@ ModulePlayer::ModulePlayer()
 
 	// idle animation (arcade sprite sheet)
 	idle.PushBack({ 100, 0, 36, 16 });
-
+	idle.speed = 0.01f;
 	
 	forward.PushBack({ 100, 0, 36, 16 });
+	forward.speed = 0.01f;
 	
 	backward.PushBack({ 100, 0, 36, 16 });
-	
+	backward.speed = 0.01f;
 
 
 	upward.PushBack({ 48 , 0 , 40 , 16});
 	upward2.PushBack({ 4, 0, 36, 10 });
 	
 	downward.PushBack({ 150, 0, 40, 16 });
+	
 	downward.speed = 0.01f;
 	downward.PushBack({ 195, 0, 40, 16 });
 
@@ -83,7 +85,7 @@ update_status ModulePlayer::Update()
 	}
 
 	// Draw everything --------------------------------------
-	SDL_Rect r = current_animation->GetCurrentFrame();
+	SDL_Rect r = current_animation->GetCurrentFrameNotCycling(3);
 
 	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 

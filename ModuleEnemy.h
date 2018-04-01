@@ -33,10 +33,9 @@ public:
 	Uint32* start_time = 0;
 	Uint32* spawn_delay;
 
-<<<<<<< HEAD
-=======
+
 	Animation anim;
->>>>>>> 6a308cc207e3909ba513ae72a8bad9604fef8387
+
 };
 
 #endif // __ModuleInput_H__
