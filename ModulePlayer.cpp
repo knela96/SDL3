@@ -30,6 +30,7 @@ ModulePlayer::ModulePlayer()
 
 	upward.PushBack({ 48 , 0 , 40 , 16});
 	upward.PushBack({ 4, 0, 36, 10 });
+	upward.PushBack({ 4, 0, 36, 10 });
 	upward.speed = 0.01f;
 	
 	downward.speed = 0.01f;
@@ -85,7 +86,7 @@ update_status ModulePlayer::Update()
 	}
 
 	// Draw everything --------------------------------------
-	SDL_Rect r = current_animation->GetCurrentFrameNotCycling(3);
+	SDL_Rect r = current_animation->GetCurrentFrameNotCycling();
 
 	App->render->Blit(graphics, position.x, position.y - r.h, &r);
 
