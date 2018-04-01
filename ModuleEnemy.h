@@ -2,14 +2,20 @@
 #define __ModuleEnemy_H__
 
 #include "Module.h"
+#include "Animation.h"
+#include "Globals.h"
+#include "p2Point.h"
 
 struct SDL_Rect;
+struct SDL_Texture;
 
 typedef unsigned int Uint32;
 
 struct Enemy {
-	bool render;
 	SDL_Rect* collision;
+	SDL_Texture* graphics = nullptr;
+	Animation forward;
+	iPoint position;
 };
 
 class ModuleEnemy : public Module
@@ -19,14 +25,17 @@ public:
 	ModuleEnemy();
 	~ModuleEnemy();
 
-	bool Init();
+	bool Start();
 	update_status Update();
-	bool CleanUp();
 
 public:
 	Enemy enemies[30];
 	Uint32* start_time = 0;
 	Uint32* spawn_delay;
+<<<<<<< HEAD
+=======
+	Animation anim;
+>>>>>>> 9e88072f22a20ac46b9b71b05b65dc9706a638a1
 };
 
 #endif // __ModuleInput_H__
