@@ -2,34 +2,29 @@
 #define __ModulePlayer_H__
 
 #include "Module.h"
+#include "Animation.h"
+#include "Globals.h"
+#include "p2Point.h"
 
-struct SDL_Rect;
-
-typedef unsigned int Uint32;
-
-struct Bullet {
-	bool shooting;
-	SDL_Rect* bullet;
-};
+struct SDL_Texture;
 
 class ModulePlayer : public Module
 {
 public:
-
 	ModulePlayer();
 	~ModulePlayer();
 
-	bool Init();
+	bool Start();
 	update_status Update();
-	bool CleanUp();
-	bool checkCollision(SDL_Rect* bullet, SDL_Rect* enemy);
 
 public:
-	SDL_Rect* player;
-	SDL_Rect* shoot;
-	Bullet bullets[10] = { false, nullptr};
-	Uint32* start_time = 0;
-	Uint32* shooting_delay;
+
+	SDL_Texture* graphics = nullptr;
+	Animation idle;
+	Animation forward;
+	Animation backward;
+	iPoint position;
+
 };
 
-#endif // __ModuleInput_H__
+#endif

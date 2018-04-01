@@ -9,10 +9,8 @@
 
 ModuleTextures::ModuleTextures() : Module()
 {
-	// TODO 5: Initialize all texture pointers to nullptr
-	for (int i = 0; i < MAX_TEXTURES; ++i) {
+	for(uint i = 0; i < MAX_TEXTURES; ++i)
 		textures[i] = nullptr;
-	}
 }
 
 // Destructor
@@ -38,16 +36,14 @@ bool ModuleTextures::Init()
 	return ret;
 }
 
-// Called before quitting
+// Called before q	uitting
 bool ModuleTextures::CleanUp()
 {
 	LOG("Freeing textures and Image library");
 
-	// TODO 6: Free all textures
-	for (int i = 0; i < MAX_TEXTURES; ++i) {
+	for(uint i = 0; i < MAX_TEXTURES; ++i)
 		if(textures[i] != nullptr)
-			textures[i] = nullptr;
-	}
+			SDL_DestroyTexture(textures[i]);
 
 	IMG_Quit();
 	return true;
@@ -56,42 +52,28 @@ bool ModuleTextures::CleanUp()
 // Load new texture from file path
 SDL_Texture* const ModuleTextures::Load(const char* path)
 {
-	// TODO 2: Load and image from a path (must be a png)
-	// and check for errors
-	SDL_Surface *image;
-	image = IMG_Load(path);
-	if (!image) {
-		LOG("Could not load Image %s IMG_Load: %s",path, IMG_GetError());
-	}
-	else {
-		// TODO 3: Once your have the SDL_surface*, you need to create
-		// a texture from it to return it (check for errors again)
-		SDL_Texture* texture;
+	SDL_Texture* texture = NULL;
+	SDL_Surface* surface = IMG_Load(path);
 
-		//Create texture from surface pixels
-		texture = SDL_CreateTextureFromSurface(App->render->renderer, image);
-		if (texture == nullptr)
+	if(surface == NULL)
+	{
+		LOG("Could not load surface with path: %s. IMG_Load: %s", path, IMG_GetError());
+	}
+	else
+	{
+		texture = SDL_CreateTextureFromSurface(App->render->renderer, surface);
+
+		if(texture == NULL)
 		{
-			LOG("Unable to create texture from %s! SDL Error: %s\n", path, SDL_GetError());
+			LOG("Unable to create texture from surface! SDL Error: %s\n", SDL_GetError());
 		}
 		else
 		{
-			//Get rid of old loaded surface
-			// TODO 4: Before leaving, remember to free the surface and
-			// add the texture to our own array so we can properly free them
-
-			SDL_FreeSurface(image);
-
-			for (int i = 0; i < MAX_TEXTURES; ++i) {
-				if (textures[i] == nullptr) {
-					textures[i] = texture;
-					return texture;
-				}
-			}
+			textures[last_texture++] = texture;
 		}
 
+		SDL_FreeSurface(surface);
 	}
 
-
-	return nullptr;
+	return texture;
 }

@@ -1,130 +1,85 @@
 #include "Globals.h"
 #include "Application.h"
-#include "ModulePlayer.h"
-#include "ModuleEnemy.h"
+#include "ModuleTextures.h"
 #include "ModuleInput.h"
-#include "ModuleAudio.h"
-#include "SDL/include/SDL.h"
+#include "ModuleRender.h"
+#include "ModulePlayer.h"
 
-ModulePlayer::ModulePlayer() : Module() {}
+// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-// Destructor
-ModulePlayer::~ModulePlayer() {}
-
-// Called before render is available
-bool ModulePlayer::Init()
+ModulePlayer::ModulePlayer()
 {
+	position.x = 100;
+	position.y = 220;
+
+	// idle animation (arcade sprite sheet)
+	idle.PushBack({7, 14, 60, 90});
+	idle.PushBack({95, 15, 60, 89});
+	idle.PushBack({184, 14, 60, 90});
+	idle.PushBack({276, 11, 60, 93});
+	idle.PushBack({366, 12, 60, 92});
+	idle.speed = 0.2f;
+
+	// walk forward animation (arcade sprite sheet)
+	//forward.frames.PushBack({9, 136, 53, 83});
+	forward.PushBack({78, 131, 60, 88});
+	forward.PushBack({162, 128, 64, 92});
+	forward.PushBack({259, 128, 63, 90});
+	forward.PushBack({352, 128, 54, 91});
+	forward.PushBack({432, 131, 50, 89});
+	forward.speed = 0.1f;
+
+	// TODO 4: Make ryu walk backwards with the correct animations
+
+	// walk forward animation (arcade sprite sheet)
+	//forward.frames.PushBack({9, 136, 53, 83});
+	
+
+	// IN PROGRESS
+
+	backward.PushBack({ 532, 131, 60, 88 });
+	backward.PushBack({ 624, 131, 64, 92 });
+	backward.PushBack({ 700, 128, 63, 90 });
+	backward.PushBack({ 798, 128, 54, 91 });
+	backward.PushBack({ 900, 131, 50, 89 });
+	backward.speed = 0.1f;
+
+}
+
+ModulePlayer::~ModulePlayer()
+{}
+
+// Load assets
+bool ModulePlayer::Start()
+{
+	LOG("Loading player textures");
 	bool ret = true;
-	player = new SDL_Rect{ 0,0,100,30 };
-	shoot = new SDL_Rect{ 0,0,80,50 };
-	/*for (int i = 0; i < 10; ++i) {
-	bullets[i].shooting = false;
-	}*/
+	graphics = App->textures->Load("ryu.png"); // arcade version
 	return ret;
 }
 
-// Called every draw update
+// Update: draw background
 update_status ModulePlayer::Update()
 {
+	Animation* current_animation = &idle;
 
-	start_time = (Uint32 *)SDL_GetTicks();
+	int speed = 1;
 
-	//Rectangle Movement
-	if (App->input->movement_key[App->input->UP] && player->y > 0) {
-		player->y--;
-	}
-	if (App->input->movement_key[App->input->DOWN] && player->y < SCREEN_HEIGHT - player->h) {
-		player->y++;
-	}
-	if (App->input->movement_key[App->input->LEFT] && player->x > 0) {
-		player->x--;
-	}
-	if (App->input->movement_key[App->input->RIGHT] && player->x < SCREEN_WIDTH - player->w) {
-		player->x++;
-	}
-	if (App->input->movement_key[App->input->SPACE]) {
-		if (start_time - shooting_delay > 250) {
-			for (int i = 0; i < 10 && (start_time - shooting_delay > 250); ++i) {
-				if (!bullets[i].shooting) {
-					shooting_delay = start_time;
-					bullets[i].bullet = new SDL_Rect{ player->x + player->w ,player->y + (player->h / 2) - 30 ,80,60 };
-					bullets[i].shooting = true;
-					App->audio->PlayShoot();
-					break;
-				}
-			}
-		}
-	}
-
-
-	//Check Collisions
-	for (int i = 0; i < 10; ++i) {
-		for (int j = 0; j < 30; ++j) {
-			if (bullets[i].bullet != nullptr && App->enemy->enemies[j].collision != nullptr) {
-				if (checkCollision(bullets[i].bullet, App->enemy->enemies[j].collision)) {
-					bullets[i].shooting = false;
-					bullets[i].bullet->x = -1000;
-					App->enemy->enemies[j].render = false;
-					break;
-				}
-			}
-		}
-	}
-
-
-	return update_status::UPDATE_CONTINUE;
-}
-
-// Called before quitting
-bool ModulePlayer::CleanUp()
-{
-	for (int i = 0; i < 10; ++i) {
-		bullets[i].bullet = nullptr;
-	}
-	player = nullptr;
-	return true;
-}
-
-bool ModulePlayer::checkCollision(SDL_Rect* bullet, SDL_Rect* enemy) {
-	//The sides of the rectangles
-	int leftA, leftB;
-	int rightA, rightB;
-	int topA, topB;
-	int bottomA, bottomB;
-
-	//Calculate the sides of rect A
-	leftA = bullet->x;
-	rightA = bullet->x + bullet->w;
-	topA = bullet->y;
-	bottomA = bullet->y + bullet->h;
-
-	//Calculate the sides of rect B
-	leftB = enemy->x;
-	rightB = enemy->x + enemy->w;
-	topB = enemy->y;
-	bottomB = enemy->y + enemy->h;
-
-	//If any of the sides from A are outside of B
-	if (bottomA <= topB)
+	if(App->input->keyboard[SDL_SCANCODE_D] == 1)
 	{
-		return false;
-	}
-
-	if (topA >= bottomB)
+		current_animation = &forward;
+		position.x += speed;
+	} 
+	if (App->input->keyboard[SDL_SCANCODE_A] == 1)
 	{
-		return false;
+		current_animation = &backward;
+		position.x -= speed;
 	}
 
-	if (rightA <= leftB)
-	{
-		return false;
-	}
+	// Draw everything --------------------------------------
+	SDL_Rect r = current_animation->GetCurrentFrame();
 
-	if (leftA >= rightB)
-	{
-		return false;
-	}
-
-	//If none of the sides from A are outside B
-	return true;
+	App->render->Blit(graphics, position.x, position.y - r.h, &r);
+	
+	return UPDATE_CONTINUE;
 }

@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Globals.h"
+#include "SDL\include\SDL_scancode.h"
 
 typedef unsigned char Uint8;
 
@@ -14,13 +15,11 @@ public:
 	~ModuleInput();
 
 	bool Init();
-	update_status Update();
+	update_status PreUpdate();
 	bool CleanUp();
 
 public:
 	const Uint8 *keyboard = nullptr;
-	bool movement_key[5];
-	enum key { UP, LEFT, DOWN, RIGHT, SPACE };
 };
 
 #endif // __ModuleInput_H__

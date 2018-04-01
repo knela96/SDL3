@@ -6,6 +6,7 @@
 #include "ModulePlayer.h"
 #include "ModuleAudio.h"
 #include "ModuleEnemy.h"
+#include "ModuleBackground.h"
 
 Application::Application()
 {
@@ -16,6 +17,7 @@ Application::Application()
 	modules[4] = player = new ModulePlayer();
 	modules[5] = enemy = new ModuleEnemy();
 	modules[6] = audio = new ModuleAudio();
+	modules[7] = background = new ModuleBackground();
 }	
 
 Application::~Application()
@@ -30,6 +32,9 @@ bool Application::Init()
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
+
+	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
+		ret = modules[i]->Start();
 
 	return ret;
 }
