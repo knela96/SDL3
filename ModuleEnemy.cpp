@@ -45,7 +45,11 @@ update_status ModuleEnemy::Update()
 	for (int i = 0; i < 30; ++i) {
 		Animation* current_animation = &enemies[i].forward;
 
-		if ((start_time - spawn_delay > 200) && enemies[i].position.x < 100) {
+		if (enemies[i].position.x < 100) {
+			enemies[i].collision = nullptr;
+		}
+
+		if ((start_time - spawn_delay > 200) && enemies[i].collision == nullptr) {
 			spawn_delay = start_time;
 
 			enemies[i].position.x = SCREEN_WIDTH;

@@ -7,11 +7,11 @@
 #include "p2Point.h"
 
 struct SDL_Rect;
+struct SDL_Texture;
 
 typedef unsigned int Uint32;
 
 struct Bullet {
-	bool shooting;
 	SDL_Rect* bullet;
 };
 

@@ -31,7 +31,7 @@ bool ModuleProjectile::Start()
 // Called every draw update
 update_status ModuleProjectile::Update()
 {
-	player = new ModulePlayer;
+	player = App->player;
 
 	start_time = (Uint32 *)SDL_GetTicks();
 
@@ -40,10 +40,9 @@ update_status ModuleProjectile::Update()
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) {
 		if (start_time - shooting_delay > 250) {
 			for (int i = 0; i < 10 && (start_time - shooting_delay > 250); ++i) {
-				if (!bullets[i].shooting) {
+				if (bullets[i].bullet == nullptr) {
 					shooting_delay = start_time;
 					bullets[i].bullet = new SDL_Rect{ player->position.x + /*player->w*/ 15 , player->position.y  /* + (player->h / 2) - 30 ,80,60 */};
-					bullets[i].shooting = true;
 					App->audio->PlayShoot();
 					break;
 				}
@@ -57,9 +56,8 @@ update_status ModuleProjectile::Update()
 		for (int j = 0; j < 30; ++j) {
 			if (bullets[i].bullet != nullptr && App->enemy->enemies[j].collision != nullptr) {
 				if (checkCollision(bullets[i].bullet, App->enemy->enemies[j].collision)) {
-					bullets[i].shooting = false;
-					bullets[i].bullet->x = -1000;
-					App->enemy->enemies[j].position.x = -100;
+					bullets[i].bullet = nullptr;
+					App->enemy->enemies[j].collision = nullptr;
 					break;
 				}
 			}
