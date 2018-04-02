@@ -55,7 +55,7 @@ update_status ModuleProjectile::Update()
 				if (checkCollision(bullets[i].bullet, App->enemy->enemies[j].collision)) {
 					bullets[i].shooting = false;
 					bullets[i].bullet->x = -1000;
-					App->enemy->enemies[j].render = false;
+					App->enemy->enemies[j].position.x = -100;
 					break;
 				}
 			}

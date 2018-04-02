@@ -7,6 +7,7 @@
 #include "ModuleAudio.h"
 #include "ModuleEnemy.h"
 #include "ModuleBackground.h"
+#include "ModuleProjectile.h"
 
 Application::Application()
 {
@@ -18,6 +19,7 @@ Application::Application()
 	modules[5] = background = new ModuleBackground();
 	modules[6] = player = new ModulePlayer();
 	modules[7] = enemy = new ModuleEnemy();
+	modules[8] = projectile = new ModuleProjectile();
 }	
 
 Application::~Application()

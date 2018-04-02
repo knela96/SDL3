@@ -19,7 +19,7 @@ public:
 	ModuleProjectile();
 	~ModuleProjectile();
 
-	bool Init();
+	bool Start();
 	update_status Update();
 	bool CleanUp();
 	bool checkCollision(SDL_Rect* bullet, SDL_Rect* enemy);
