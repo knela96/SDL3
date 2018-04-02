@@ -27,7 +27,8 @@ public:
 	Animation downward;
 	Animation upwardreturn;
 	Animation downwardreturn;
-	
+	Animation* current_animation;
+	SDL_Rect r;
 	iPoint position;
 
 };
