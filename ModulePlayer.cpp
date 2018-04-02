@@ -29,15 +29,21 @@ ModulePlayer::ModulePlayer()
 	backward.speed = 0.1f;
 
 
-	upward.PushBack({ 48 , 0 , 40 , 16});
+	upward.PushBack({ 48 , 0 , 40 , 16 });
 	upward.PushBack({ 4, 0, 40 , 16 });
-	upward.PushBack({ 4, 0, 36, 10 });
-	upward.speed = 0.06f;
-	
-	
+	upward.speed = 0.055f;
+
+	upwardreturn.PushBack({ 4, 0, 40 , 16 });
+	upwardreturn.PushBack({ 48 , 0 , 40 , 16 });
+	upwardreturn.speed = 0.055f;
+
 	downward.PushBack({ 150, 0, 40, 16 });
 	downward.PushBack({ 195, 0, 40, 16 });
-	downward.speed = 0.06f;
+	downward.speed = 0.055f;
+
+	downwardreturn.PushBack({ 195, 0, 40, 16 });
+	downwardreturn.PushBack({ 150, 0, 40, 16 });
+	downwardreturn.speed = 0.055f;
 
 }
 
@@ -73,6 +79,7 @@ update_status ModulePlayer::Update()
 		position.y -= speed;
 		current_animation = &upward;
 		r = current_animation->GetCurrentFrameNotCycling(1);
+		
 	}
 	else if (App->input->keyboard[SDL_SCANCODE_W] == 0) {
 		current_animation = &upward;
