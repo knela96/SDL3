@@ -31,19 +31,19 @@ ModulePlayer::ModulePlayer()
 
 	upward.PushBack({ 49 , 0 , 48 , 16 });
 	upward.PushBack({ 0, 0, 48 , 16 });
-	upward.speed = 0.055f;
+	upward.speed = 0.075f;
 
 	upwardreturn.PushBack({ 49 , 0 , 48 , 16 });
 	upwardreturn.PushBack({ 97, 0, 48, 16 });
-	upwardreturn.speed = 0.055f;
+	upwardreturn.speed = 0.075f;
 
 	downward.PushBack({ 145, 0, 48, 16 });
 	downward.PushBack({ 193, 0, 48, 16 });
-	downward.speed = 0.055f;
+	downward.speed = 0.075f;
 
 	downwardreturn.PushBack({ 145, 0, 48, 16 });
 	downwardreturn.PushBack({ 97, 0, 48, 16 });
-	downwardreturn.speed = 0.055f;
+	downwardreturn.speed = 0.075f;
 
 	current_animation = &idle;
 }
