@@ -59,7 +59,7 @@ update_status ModulePlayer::Update()
 	Animation* current_animation = &idle;
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	int speed = 1;
-
+	position.x += speed;
 	if (App->input->keyboard[SDL_SCANCODE_D] == 1)
 	{
 		position.x += speed;

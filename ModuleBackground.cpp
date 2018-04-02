@@ -8,37 +8,39 @@
 
 ModuleBackground::ModuleBackground()
 {
-	// ground
-	ground.x = 8;
-	ground.y = 391;
-	ground.w = 896;
-	ground.h = 72;
+	//ground
+	ground.x = 0;
+	ground.y = 0;
+	ground.w = 512;
+	ground.h = 512;
 
 	// Background / sky
-	background.x = 72;
-	background.y = 208;
-	background.w = 768;
-	background.h = 176;
+	background.x = 0;
+	background.y = 1;
+	background.w = 4961;
+	background.h = 513;
 
-	// flag animation
-	flag.PushBack({848, 208, 40, 40});
-	flag.PushBack({848, 256, 40, 40});
-	flag.PushBack({848, 304, 40, 40});
-	flag.speed = 0.08f;
+	//// flag animation
+	//flag.PushBack({848, 208, 40, 40});
+	//flag.PushBack({848, 256, 40, 40});
+	//flag.PushBack({848, 304, 40, 40});
+	//flag.speed = 0.08f;
 
-	//ship
+	////ship
 
-	ship.x = 0 ;
-	ship.y = 0 ;
-	ship.w = 525;
-	ship.h = 200 ;
+	//ship.x = 0 ;
+	//ship.y = 0 ;
+	//ship.w = 525;
+	//ship.h = 200 ;
 
-	// girl animation
-	people.PushBack({ 619,16,37,57 });
-	people.PushBack({ 619,80,37,57 });
-	people.PushBack({ 619,144,37,57 });
-	people.PushBack({ 619,80,37,57 });
-	people.speed = 0.1f;
+	//// girl animation
+	//people.PushBack({ 619,16,37,57 });
+	//people.PushBack({ 619,80,37,57 });
+	//people.PushBack({ 619,144,37,57 });
+	//people.PushBack({ 619,80,37,57 });
+	//people.speed = 0.1f;
+
+	
 }
 
 ModuleBackground::~ModuleBackground()
@@ -49,7 +51,8 @@ bool ModuleBackground::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	graphics = App->textures->Load("ken_stage.png");
+	graphics = App->textures->Load("TileMap.png");
+	back = App->textures->Load("FirstLvlMap3.png");
 	
 	return ret;
 }
@@ -57,19 +60,21 @@ bool ModuleBackground::Start()
 // Update: draw background
 update_status ModuleBackground::Update()
 {
-	// Draw everything --------------------------------------
-	App->render->Blit(graphics, 0, 0, &background, 0.75f); // sea and sky
-	App->render->Blit(graphics, 560, 8, &(flag.GetCurrentFrame()), 0.75f); // flag animation
+	--ScrollingOffset;
+	if (ScrollingOffset < -512)
+	{
+		ScrollingOffset = 0;
+	}
 
-	// TODO 2: Draw the ship from the sprite sheet with some parallax effect
-	App->render->Blit(graphics, -8, -26, &ship, 0.75f);
+
+	App->render->Blit(back, ScrollingOffset, 0, &ground, 0.1f);
+	App->render->Blit(back, ScrollingOffset + 512, 0, &ground, 0.1f);
+
+
+	App->render->Blit(graphics, 0, 0, &background);
 	
-
-	// TODO 3: Animate the girl on the ship (see the sprite sheet)
-	App->render->Blit(graphics, 187, 102, &(people.GetCurrentFrame()), 0.75f);
-
-
-	App->render->Blit(graphics, 0, 170, &ground);
+	
+	
 
 	return UPDATE_CONTINUE;
 }

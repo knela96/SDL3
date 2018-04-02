@@ -25,7 +25,7 @@ public:
 	SDL_Renderer* renderer = nullptr;
 	SDL_Rect camera;
 	SDL_Rect* section;
-	int ScrollingOffset = 0;
+
 };
 
 #endif //__ModuleRenderer_H__

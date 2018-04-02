@@ -19,11 +19,13 @@ public:
 public:
 	
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* back = nullptr;
 	SDL_Rect ground;
 	SDL_Rect background;
 	Animation flag;
 	SDL_Rect ship;
 	Animation people;
+	int ScrollingOffset = 0;
 
 };
 
