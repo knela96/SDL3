@@ -12,7 +12,7 @@
 ModuleProjectile::ModuleProjectile() : Module() {
 
 
-	singleshot.PushBack({ 100, 0, 36, 16 });
+	singleshot.PushBack({ 64, 30, 17, 18});
 	singleshot.speed = 0.1f;
 
 
@@ -42,6 +42,7 @@ update_status ModuleProjectile::Update()
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	int speed = 1;
 
+
 	start_time = (Uint32 *)SDL_GetTicks();
 
 	//Rectangle Movement
@@ -53,6 +54,8 @@ update_status ModuleProjectile::Update()
 					shooting_delay = start_time;
 					bullets[i].bullet = new SDL_Rect{ player->position.x + /* player->w */ 15 , player->position.y  /* + (player->h / 2) - 30 ,80,60 */ };
 					App->audio->PlayShoot();
+					bullets[i].position.x = App->player->position.x;
+					bullets[i].position.y = App->player->position.y;
 					break;
 				}
 			}
@@ -74,10 +77,14 @@ update_status ModuleProjectile::Update()
 	}
 
 	for (int i = 0; i < 10; ++i) {
-		if (bullets[i].bullet != nullptr && bullets[i].bullet->x < SCREEN_WIDTH) {
-			bullets[i].bullet->x += 2;
-
-			App->render->Blit(graphics, player->position.x, player->position.y - r.h, &r);
+		if (bullets[i].bullet != nullptr) {
+			if (bullets[i].position.x > SCREEN_WIDTH) {
+				bullets[i].bullet = nullptr;
+			}
+			else {
+				bullets[i].position.x += 2;
+				App->render->Blit(graphics, bullets[i].position.x, bullets[i].position.y - r.h, &r);
+			}
 		}
 	}
 

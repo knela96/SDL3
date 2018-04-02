@@ -43,6 +43,15 @@ public:
 		frames[0];
 	}
 
+	bool islastframe() {
+		if (current_frame >= last_frame) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 
 
 
