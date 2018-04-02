@@ -35,7 +35,7 @@ ModulePlayer::ModulePlayer()
 
 	upwardreturn.PushBack({ 4, 0, 40 , 16 });
 	upwardreturn.PushBack({ 48 , 0 , 40 , 16 });
-	upwardreturn.speed = 0.055f;
+	upwardreturn.speed = 0.075f;
 
 	downward.PushBack({ 150, 0, 40, 16 });
 	downward.PushBack({ 195, 0, 40, 16 });
@@ -43,7 +43,7 @@ ModulePlayer::ModulePlayer()
 
 	downwardreturn.PushBack({ 195, 0, 40, 16 });
 	downwardreturn.PushBack({ 150, 0, 40, 16 });
-	downwardreturn.speed = 0.055f;
+	downwardreturn.speed = 0.075f;
 
 }
 
