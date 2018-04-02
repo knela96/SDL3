@@ -11,6 +11,7 @@
 
 ModulePlayer::ModulePlayer()
 {
+
 	position.x = 100;
 	position.y = 220;
 
