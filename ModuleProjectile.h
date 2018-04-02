@@ -2,6 +2,9 @@
 #define __ModuleProjectile_H__
 
 #include "Module.h"
+#include "Animation.h"
+#include "Globals.h"
+#include "p2Point.h"
 
 struct SDL_Rect;
 
@@ -28,6 +31,8 @@ public:
 	
 	SDL_Rect* shoot;
 	ModulePlayer* player;
+	SDL_Texture* graphics = nullptr;
+	Animation singleshot;
 	Bullet bullets[10] = { false, nullptr };
 	Uint32* start_time = 0;
 	Uint32* shooting_delay;

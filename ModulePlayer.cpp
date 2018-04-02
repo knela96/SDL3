@@ -5,7 +5,7 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "SDL/include/SDL.h"
-#include <time.h>
+
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 

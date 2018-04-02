@@ -24,8 +24,6 @@ public:
 	Animation forward;
 	Animation backward;
 	Animation upward;
-	Animation upward2;
-	
 	Animation downward;
 	
 	iPoint position;

@@ -6,6 +6,8 @@
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
 #include "SDL/include/SDL.h"
+#include "ModuleTextures.h"
+#include "ModuleRender.h"
 
 ModuleProjectile::ModuleProjectile() : Module() {}
 
@@ -13,14 +15,16 @@ ModuleProjectile::ModuleProjectile() : Module() {}
 ModuleProjectile::~ModuleProjectile() {}
 
 // Called before render is available
-bool ModuleProjectile::Init()
+bool ModuleProjectile::Start()
 {
 	bool ret = true;
 	
 	shoot = new SDL_Rect{ 0,0,80,50 };
-	/*for (int i = 0; i < 10; ++i) {
-	bullets[i].shooting = false;
-	}*/
+	
+	LOG("Loading player textures");
+	
+	graphics = App->textures->Load("Player.png"); // arcade version
+	
 	return ret;
 }
 
