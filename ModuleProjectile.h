@@ -34,7 +34,7 @@ public:
 	ModulePlayer* player;
 	SDL_Texture* graphics = nullptr;
 	Animation singleshot;
-	Bullet bullets[10] = { false, nullptr };
+	Bullet bullets[10] = { false,{ 0,0 } };
 	Uint32* start_time = 0;
 	Uint32* shooting_delay;
 };
