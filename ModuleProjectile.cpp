@@ -12,7 +12,7 @@
 ModuleProjectile::ModuleProjectile() : Module() {
 
 
-	singleshot.PushBack({ 100, 0, 36, 16 });
+	singleshot.PushBack({ 64, 30, 17, 18});
 	singleshot.speed = 0.1f;
 
 
