@@ -42,6 +42,7 @@ update_status ModuleProjectile::Update()
 	SDL_Rect r = current_animation->GetCurrentFrame();
 	int speed = 1;
 
+
 	start_time = (Uint32 *)SDL_GetTicks();
 
 	//Rectangle Movement
@@ -77,7 +78,7 @@ update_status ModuleProjectile::Update()
 		if (bullets[i].bullet != nullptr && bullets[i].bullet->x < SCREEN_WIDTH) {
 			bullets[i].bullet->x += 2;
 
-			App->render->Blit(graphics, player->position.x, player->position.y - r.h, &r);
+			App->render->Blit(graphics, bullets->position.x, bullets->position.y - r.h, &r);
 		}
 	}
 

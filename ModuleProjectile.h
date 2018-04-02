@@ -13,6 +13,7 @@ typedef unsigned int Uint32;
 
 struct Bullet {
 	SDL_Rect* bullet;
+	iPoint position;
 };
 
 class ModuleProjectile : public Module
