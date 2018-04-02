@@ -9,7 +9,14 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 
-ModuleProjectile::ModuleProjectile() : Module() {}
+ModuleProjectile::ModuleProjectile() : Module() {
+
+
+	singleshot.PushBack({ 100, 0, 36, 16 });
+	singleshot.speed = 0.1f;
+
+
+}
 
 // Destructor
 ModuleProjectile::~ModuleProjectile() {}
@@ -19,7 +26,6 @@ bool ModuleProjectile::Start()
 {
 	bool ret = true;
 	
-	shoot = new SDL_Rect{ 0,0,80,50 };
 	
 	LOG("Loading player textures");
 	
@@ -32,6 +38,9 @@ bool ModuleProjectile::Start()
 update_status ModuleProjectile::Update()
 {
 	player = App->player;
+	Animation* current_animation = &singleshot;
+	SDL_Rect r = current_animation->GetCurrentFrame();
+	int speed = 1;
 
 	start_time = (Uint32 *)SDL_GetTicks();
 
@@ -42,7 +51,7 @@ update_status ModuleProjectile::Update()
 			for (int i = 0; i < 10 && (start_time - shooting_delay > 250); ++i) {
 				if (bullets[i].bullet == nullptr) {
 					shooting_delay = start_time;
-					bullets[i].bullet = new SDL_Rect{ player->position.x + /*player->w*/ 15 , player->position.y  /* + (player->h / 2) - 30 ,80,60 */};
+					bullets[i].bullet = new SDL_Rect{ player->position.x + /* player->w */ 15 , player->position.y  /* + (player->h / 2) - 30 ,80,60 */ };
 					App->audio->PlayShoot();
 					break;
 				}
@@ -64,6 +73,13 @@ update_status ModuleProjectile::Update()
 		}
 	}
 
+	for (int i = 0; i < 10; ++i) {
+		if (bullets[i].bullet != nullptr && bullets[i].bullet->x < SCREEN_WIDTH) {
+			bullets[i].bullet->x += 2;
+
+			App->render->Blit(graphics, player->position.x, player->position.y - r.h, &r);
+		}
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }
