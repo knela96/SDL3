@@ -51,8 +51,8 @@ bool ModuleBackground::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
-	graphics = App->textures->Load("TileMap.png");
-	back = App->textures->Load("FirstLvlMap3.png");
+	graphics = App->textures->Load("Assets/TileMap.png");
+	back = App->textures->Load("Assets/FirstLvlMap3.png");
 	
 	return ret;
 }

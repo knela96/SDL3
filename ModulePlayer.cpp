@@ -56,7 +56,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	graphics = App->textures->Load("Player.png"); // arcade version
+	graphics = App->textures->Load("Assets/Player.png"); // arcade version
 	return ret;
 }
 

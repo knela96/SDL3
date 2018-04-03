@@ -31,7 +31,7 @@ bool ModuleEnemy::Start()
 	LOG("Loading enemy textures");
 	bool ret = true;
 	for (int i = 0; i < 30; ++i) {
-		enemies[i].graphics = App->textures->Load("littleshrimp.png"); // arcade version
+		enemies[i].graphics = App->textures->Load("Assets/littleshrimp.png"); // arcade version
 	}
 	return ret;
 }

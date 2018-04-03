@@ -29,7 +29,7 @@ bool ModuleProjectile::Start()
 	
 	LOG("Loading player textures");
 	
-	graphics = App->textures->Load("Player.png"); // arcade version
+	graphics = App->textures->Load("Assets/Player.png"); // arcade version
 	
 	return ret;
 }
